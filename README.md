@@ -32,27 +32,27 @@ git clone git@github.com:FlavioRico/RPC_C.git
     ./e_client localhost
  
 # Important notes
-El script "requests.x" contiene la declaración de las funciones que se utilizarán para comunicar el cliente y el servidor, así como los datos compuestos que serán enviados por parámetro en las funciones.
+El script "requests.x" contiene la declaración de las funciones que se utilizarán para comunicar el cliente y el servidor, así como los datos compuestos que serán enviados por parámetro en las funciones.<br />
 Los scripts "requests.h, requests.xdr.c requests_clnt.c requests_svc.c" son generados automáticamente con RPC utilizando el script "requests.x" para definir las estructuras y funciones indicadas en dicho script; de igual forma, la bandera "-a" nos ayuda a generar una plantilla automática en la cual solamente nos dedicaremos a escribir la lógica del proyecto. (rpcgen -a -C requests.x).
 Cuando compilamos tanto cliente como servidor, es importante incluir el script generado "requests_xdr.c" debido a que se utilizan datos compuestos en IDL, RPC requiere este archivo con definiciones específicas de los datos compuestos en C.
-El archivo BD.txt contiene un catálogo de automóviles con sus detalles, este archivo simula una Base de Datos de la cual se cargaría la información de cada automóvil para que desde el servidor se determine el manejo de esta información. Al inicio del archivo se especifica la longitud de la BD, es importante que si se agregan o quitan automóviles del catálogo, esto se vea relacionado con el valor de la longitud ya que este dato es utilizado por el servidor.
+El archivo BD.txt contiene un catálogo de automóviles con sus detalles, este archivo simula una Base de Datos de la cual se cargaría la información de cada automóvil para que desde el servidor se determine el manejo de esta información. Al inicio del archivo se especifica la longitud de la BD, es importante que si se agregan o quitan automóviles del catálogo, esto se vea relacionado con el valor de la longitud ya que este dato es utilizado por el servidor.<br /><br />
  
-Desglosando los parámetros de compilación del CLIENTE:
-    Comando: gcc requests_client.c requests_clnt.c requests_xdr.c -o e_client
-    Donde:
-    - "requests_client.c" => Corresponde a la plantilla generada por rpcgen y en el cual se encuentra la lógica desarrollada manualmente.
-    - "requests_clnt.c" => Corresponde a un archivo generado por rpcgen, el cual contiene código para declarar las funciones en C a partir del archivo ".x".
-    - "requests_xdr.c" => Corresponde a un archivo generado por rpcgen cuando se definen datos compuestos en IDL.
-    - "e_client" => Corresponde al nombre del ejecutable.
+Desglosando los parámetros de compilación del CLIENTE:<br />
+    Comando: <pre><code>gcc requests_client.c requests_clnt.c requests_xdr.c -o e_client</pre></code><br />
+    Donde:<br />
+    - "requests_client.c" => Corresponde a la plantilla generada por rpcgen y en el cual se encuentra la lógica desarrollada manualmente.<br />
+    - "requests_clnt.c" => Corresponde a un archivo generado por rpcgen, el cual contiene código para declarar las funciones en C a partir del archivo ".x".<br />
+    - "requests_xdr.c" => Corresponde a un archivo generado por rpcgen cuando se definen datos compuestos en IDL.<br />
+    - "e_client" => Corresponde al nombre del ejecutable.<br />
  
-Desglosando los parámetros de compilación del SERVIDOR:
-    Comando: gcc requests_server.c requests_svc.c requests_xdr.c -lm -o e_server    
-    Donde:
-    - "requests_server.c" => Corresponde a la plantilla generada por rpcgen y en el cual se encuentra la lógica desarrollada manualmente.
-    - "requests_svc.c" => Corresponde a un archivo generado por rpcgen, el cual contiene código para declarar las funciones en C a partir del archivo ".x".
-    - "requests_xdr.c" => Corresponde a un archivo generado por rpcgen cuando se definen datos compuestos en IDL.
-    - "-lm" => Es requerida para poder hacer uso de funciones como pow y sqrt.
-    - "e_server" => Corresponde al nombre del ejecutable.
+Desglosando los parámetros de compilación del SERVIDOR:<br />
+    Comando: <pre><code>gcc requests_server.c requests_svc.c requests_xdr.c -lm -o e_server</pre></code><br />    
+    Donde:<br />
+    - "requests_server.c" => Corresponde a la plantilla generada por rpcgen y en el cual se encuentra la lógica desarrollada manualmente.<br />
+    - "requests_svc.c" => Corresponde a un archivo generado por rpcgen, el cual contiene código para declarar las funciones en C a partir del archivo ".x".<br />
+    - "requests_xdr.c" => Corresponde a un archivo generado por rpcgen cuando se definen datos compuestos en IDL.<br />
+    - "-lm" => Es requerida para poder hacer uso de funciones como pow y sqrt.<br />
+    - "e_server" => Corresponde al nombre del ejecutable.<br />
  
 # Details
 Se cuenta con la declaración de distintas estructuras a partir de la definición de datos compuestos en IDL, dichos datos compuestos son los siguientes:
@@ -76,13 +76,13 @@ Se cuenta con la declaración de distintas estructuras a partir de la definició
             string placa<>;
         };
         </code></pre>
-Se cuenta con la definición de dos funciones en IDL que tienen como parámetro un dato compuesto, en algunos campos se tienen datos compuestos que contienen otros datos compuestos.
-    Utilizada para solicitar un viaje, en el parámetro Posición indicamos la posición en la cual se encuentra el cliente (esto de manera aleatoria). El tipo de función se especifica como "InfoAuto" para poder retornar la información del auto asignado o, en su caso, indicar que no existen automóviles disponibles.
-        - InfoAuto SOLICITARVIAJE(Posicion)
-    Utilizada para indicar que el viaje ha terminado. El parámetro "Data" contiene la posición a la cual llegó el cliente (simulada aleatoriamente) así como la placa del automóvil que fue utilizado para el viaje.
-        - void TERMINARVIAJE(Data)
+Se cuenta con la definición de dos funciones en IDL que tienen como parámetro un dato compuesto, en algunos campos se tienen datos compuestos que contienen otros datos compuestos.<br />
+    Utilizada para solicitar un viaje, en el parámetro Posición indicamos la posición en la cual se encuentra el cliente (esto de manera aleatoria). El tipo de función se especifica como "InfoAuto" para poder retornar la información del auto asignado o, en su caso, indicar que no existen automóviles disponibles.<br />
+        - <code><pre>InfoAuto SOLICITARVIAJE(Posicion)</code></pre>
+    Utilizada para indicar que el viaje ha terminado. El parámetro "Data" contiene la posición a la cual llegó el cliente (simulada aleatoriamente) así como la placa del automóvil que fue utilizado para el viaje.<br />
+        - <code><pre>void TERMINARVIAJE(Data)</code></pre>
 
-# others line commands:
+# Others line commands:
 <code><pre>
 rpcgen -a -C requests.x => genera scripts automaticamente para conectar cliente y servidor, definiciones de datos y uso de sockets.
 </code></pre>
