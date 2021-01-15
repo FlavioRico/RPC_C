@@ -57,7 +57,7 @@ Desglosando los parámetros de compilación del SERVIDOR:
 # Details
 Se cuenta con la declaración de distintas estructuras a partir de la definición de datos compuestos en IDL, dichos datos compuestos son los siguientes:
     Utilizada para definir la posición respecto a un plano cartesiano con las coordenadas (x, y).
-        <pre><code>struct Posicion {</code></pre>
+        <pre><code>struct Posicion {
             int x;
             int y;
         };
