@@ -57,10 +57,11 @@ Desglosando los parámetros de compilación del SERVIDOR:
 # Details
 Se cuenta con la declaración de distintas estructuras a partir de la definición de datos compuestos en IDL, dichos datos compuestos son los siguientes:
     Utilizada para definir la posición respecto a un plano cartesiano con las coordenadas (x, y).
-        struct Posicion {
+        <pre><code>struct Posicion {</code></pre>
             int x;
             int y;
         };
+        </code></pre>
     Utilizada para definir la información de un auto específico cuando el cliente hace la petición de un viaje, de esta forma podemos saber la posición del automóvil, tipo, placa y status; este último, nos indica si el automóvil está libre u ocupado.
         struct InfoAuto {
             Posicion posicion_pasajero;
