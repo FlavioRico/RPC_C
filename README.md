@@ -5,7 +5,7 @@ Micro Uber using RPC and IDL with C language.
 En este proyecto se hace uso de RPC combinado con el lenguaje C e IDL para crear una simulación de la aplicación Uber a menor escala. Se cuenta con un servidor y la posibilidad de la existencia de distintos clientes que ejecuten peticiones para solicitar un viaje.
  
 # Project requirements
-El compilador GCC
+  1) El compilador GCC
 Contar con rpcbind o ejecutar los siguientes comandos en caso de no contar con rpcbind:
   1) sudo apt update
   2) sudo apt install rpcbind
@@ -18,17 +18,17 @@ git clone https://github.com/FlavioRico/RPC_C.git
 git clone git@github.com:FlavioRico/RPC_C.git
  
 # Compile and excecute project
-Verificar que el servicio rpcbind se encuentre activo con el siguiente comando:
+1) Verificar que el servicio rpcbind se encuentre activo con el siguiente comando:
     sudo service rpcbind status
-En caso de que el servicio no se encuentre activo se requiere ejecutar el siguiente comando:
+2) En caso de que el servicio no se encuentre activo se requiere ejecutar el siguiente comando:
     sudo service rpcbind start
-Para compilar el cliente, abrir una términal y ejecutar el siguiente comando:
+3) Para compilar el cliente, abrir una términal y ejecutar el siguiente comando:
     gcc requests_client.c requests_clnt.c requests_xdr.c -o e_client
-Para compilar el servidor, abrir una términal y ejecutar el siguiente comando:
+4) Para compilar el servidor, abrir una términal y ejecutar el siguiente comando:
     gcc requests_server.c requests_svc.c requests_xdr.c -lm -o e_server    
-Primero ejecutar el servidor con el comando:
+5) Primero ejecutar el servidor con el comando:
     ./e_server
-Después ejecutar el cliente con el comando (se pueden abrir más términales y ejecutar distintos clientes):
+6) Después ejecutar el cliente con el comando (se pueden abrir más términales y ejecutar distintos clientes):
     ./e_client localhost
  
 # Important notes
@@ -63,17 +63,19 @@ Se cuenta con la declaración de distintas estructuras a partir de la definició
         };
         </code></pre>
     Utilizada para definir la información de un auto específico cuando el cliente hace la petición de un viaje, de esta forma podemos saber la posición del automóvil, tipo, placa y status; este último, nos indica si el automóvil está libre u ocupado.
-        struct InfoAuto {
+        <pre><code>struct InfoAuto {
             Posicion posicion_pasajero;
             string tipo<>;
             string placa<>;
             int status;
         };
+        </code></pre>
     Utilizada cuando el viaje de un cliente ha terminado. De esta forma podemos saber en qué nueva posición se encuentra el automóvil, con la placa actualizaremos el status de dicho automóvil desde el servidor para dejarlo como disponible.
-        struct Data {
+        <code><pre>struct Data {
             Posicion posicion_final;
             string placa<>;
         };
+        </code></pre>
 Se cuenta con la definición de dos funciones en IDL que tienen como parámetro un dato compuesto, en algunos campos se tienen datos compuestos que contienen otros datos compuestos.
     Utilizada para solicitar un viaje, en el parámetro Posición indicamos la posición en la cual se encuentra el cliente (esto de manera aleatoria). El tipo de función se especifica como "InfoAuto" para poder retornar la información del auto asignado o, en su caso, indicar que no existen automóviles disponibles.
         - InfoAuto SOLICITARVIAJE(Posicion)
@@ -81,4 +83,6 @@ Se cuenta con la definición de dos funciones en IDL que tienen como parámetro 
         - void TERMINARVIAJE(Data)
 
 # others line commands:
+<code><pre>
 rpcgen -a -C requests.x => genera scripts automaticamente para conectar cliente y servidor, definiciones de datos y uso de sockets.
+</code></pre>
