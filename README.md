@@ -1,4 +1,4 @@
-# RPC_C
+## RPC_C
 Micro Uber using RPC and IDL with C language.
  
 # Description
@@ -78,9 +78,9 @@ Se cuenta con la declaración de distintas estructuras a partir de la definició
         </code></pre>
 Se cuenta con la definición de dos funciones en IDL que tienen como parámetro un dato compuesto, en algunos campos se tienen datos compuestos que contienen otros datos compuestos.<br />
     Utilizada para solicitar un viaje, en el parámetro Posición indicamos la posición en la cual se encuentra el cliente (esto de manera aleatoria). El tipo de función se especifica como "InfoAuto" para poder retornar la información del auto asignado o, en su caso, indicar que no existen automóviles disponibles.<br />
-        - <code><pre>InfoAuto SOLICITARVIAJE(Posicion)</code></pre>
+        <code><pre>InfoAuto SOLICITARVIAJE(Posicion)</code></pre>
     Utilizada para indicar que el viaje ha terminado. El parámetro "Data" contiene la posición a la cual llegó el cliente (simulada aleatoriamente) así como la placa del automóvil que fue utilizado para el viaje.<br />
-        - <code><pre>void TERMINARVIAJE(Data)</code></pre>
+        <code><pre>void TERMINARVIAJE(Data)</code></pre>
 
 # Others line commands:
 <code><pre>
