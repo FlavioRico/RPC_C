@@ -22,6 +22,7 @@ En este proyecto se hace uso de RPC combinado con el lenguaje C e IDL para crear
   <code>
   sudo apt update
   </code>
+  <br/>
   <code>
   sudo apt install rpcbind
   </code>
