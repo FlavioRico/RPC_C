@@ -17,10 +17,14 @@ Aplicaciones usando RPC:<br /><br />
 En este proyecto se hace uso de RPC combinado con el lenguaje C e IDL para crear una simulación de la aplicación Uber a menor escala. Se cuenta con un servidor y la posibilidad de la existencia de distintos clientes que ejecuten peticiones para solicitar un viaje.
  
 # Project requirements
-  1) El compilador GCC
-Contar con rpcbind o ejecutar los siguientes comandos en caso de no contar con rpcbind:
-  1) sudo apt update
-  2) sudo apt install rpcbind
+  1) El compilador GCC <br/>
+  2) Contar con rpcbind o ejecutar los siguientes comandos en caso de no contar con rpcbind:<br/>
+  <code>
+  sudo apt update
+  </code>
+  <code>
+  sudo apt install rpcbind
+  </code>
   
 # Steps to clone the project
 (with HTTPS)
@@ -67,7 +71,7 @@ Desglosando los parámetros de compilación del SERVIDOR:<br />
     - "e_server" => Corresponde al nombre del ejecutable.<br />
  
 # Details
-Se cuenta con la declaración de distintas estructuras a partir de la definición de datos compuestos en IDL, dichos datos compuestos son los siguientes:
+Se cuenta con la declaración de distintas estructuras a partir de la definición de datos compuestos en IDL, dichos datos compuestos son los siguientes:<br /><br />
     Utilizada para definir la posición respecto a un plano cartesiano con las coordenadas (x, y).
         <pre><code>struct Posicion {
             int x;
